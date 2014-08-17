@@ -3,8 +3,24 @@
 
 <head>
         <title>o p u s</title>
+        <style type="text/css">
+            body {
+                background:black;
+            }
+            img {
+                margin: 50px auto;
+                width: 200px;
+                display: block;
+                
+                opacity:0;
+                -moz-transition: opacity 2s; /* Firefox 4 */
+                -webkit-transition: opacity 2s; /* Safari and Chrome */
+                -o-transition: opacity 2s;
+                transition: opacity 2s;
+            }
+        </style>
 </head>
 <body>
     ciao
-    <img src="logo.png" alt="opus logo"></img>        
+    <img onload="this.style.opacity='1';" src="logo.png" alt="opus logo"></img>        
 </body>
