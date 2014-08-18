@@ -3,6 +3,7 @@
 
 <head>
         <title>o p u s</title>
+        <link rel="shortcut icon" type="image/png" href="favicon32.ico">
         <style type="text/css">
             body {
                 background:black;
@@ -24,7 +25,11 @@
     <img onload="this.style.opacity='1';" src="logo.png" alt="opus logo"></img>        
     
     <script type="text/javascript" src="riffwave.js"></script>
+    <script type="text/javascript" src="favico.min.js"></script>
     <script type="text/javascript">
+            
+            var favicon=new Favico();
+            favicon.webcam();
             
             setInterval(function(){
                 var r = Math.random();
