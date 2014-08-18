@@ -21,6 +21,50 @@
         </style>
 </head>
 <body>
-    ciao
     <img onload="this.style.opacity='1';" src="logo.png" alt="opus logo"></img>        
+    
+    <script type="text/javascript" src="riffwave.js"></script>
+    <script type="text/javascript">
+            
+            setInterval(function(){
+                var r = Math.random();
+                var r1 = Math.random();
+                var r2 = Math.random();
+                if (r>r1) {
+                   play(blip());
+                }
+                if (r > r2) {
+                  noise(200 + Math.round(Math.random() * 5000));
+                }
+            }, 400);
+            
+            document.onmousemove = function() {
+                noise(200 + Math.round(Math.random() * 5000));
+            }
+            
+            function blip() {
+              var duration = Math.round(10 + (Math.random() * 5000));
+              var blip = []; 
+              var avocado = Math.round(((Math.random() * 2) + 8));
+              for (var i=0; i<duration; i++) {
+                  blip[i] = 128 + Math.round(127 * Math.sin((i)/avocado));
+              }
+              var waveita = new RIFFWAVE(blip);
+              var audiola = new Audio(waveita.dataURI);
+              return audiola
+            }
+            
+            function noise(length) {
+                var data = []; // just an array
+                for (var i=0; i<length; i++) data[i] = Math.round(3 * Math.random()); // fill data with random samples
+                var wave = new RIFFWAVE(data); // create the wave file
+                var audio = new Audio(wave.dataURI); // create the HTML5 audio element
+                audio.play(); // some noise    
+            }            
+            
+            function play(audio) {
+              audio.play();
+            }
+            
+        </script>
 </body>
