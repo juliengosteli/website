@@ -26,10 +26,14 @@
     
     <script type="text/javascript" src="riffwave.js"></script>
     <script type="text/javascript" src="favico.min.js"></script>
+    <script type="text/javascript" src="mespeak.js"></script>
     <script type="text/javascript">
             
             var favicon=new Favico();
             favicon.webcam();
+            
+            meSpeak.loadConfig("mespeak_config.json");
+            meSpeak.loadVoice('voices/sk.json');
             
             setInterval(function(){
                 var r = Math.random();
@@ -41,17 +45,31 @@
                 if (r > r2) {
                   noise(200 + Math.round(Math.random() * 5000));
                 }
+                meSpeak.speak(makeid(), {pitch:1, amplitude:4, speed:1});
             }, 400);
             
             document.onmousemove = function() {
                 noise(200 + Math.round(Math.random() * 5000));
             }
             
+                    
+            function makeid()
+                {
+                    var text = "";
+                    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                
+                    for( var i=0; i < 5; i++ )
+                        text += possible.charAt(Math.floor(Math.random() * possible.length));
+                
+                    return text;
+                }
+            
             function blip() {
               var duration = Math.round(10 + (Math.random() * 5000));
               var blip = []; 
               var avocado = Math.round(((Math.random() * 2) + 8));
               for (var i=0; i<duration; i++) {
+                  //blip[i] = 128 + Math.round(127 * Math.sin((i)/avocado));
                   blip[i] = 128 + Math.round(127 * Math.sin((i)/avocado));
               }
               var waveita = new RIFFWAVE(blip);
